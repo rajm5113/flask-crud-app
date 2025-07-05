@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Edit Transaction{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">✏️ Edit Transaction #{{ transaction.id }}</h2>
+
+<form method="POST" action="{{ url_for('edit_transaction', transaction_id=transaction.id) }}">
+    <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" name="date" value="{{ transaction.date }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" name="amount" value="{{ transaction.amount }}" step="0.01" class="form-control" required>
+    </div>
+    <div class="d-flex justify-content-between">
+        <a href="{{ url_for('get_transactions') }}" class="btn btn-secondary">← Cancel</a>
+        <button type="submit" class="btn btn-primary btn-glow">Update</button>
+    </div>
+</form>
+{% endblock %}
